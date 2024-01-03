@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        input {
+            border: 2px solid brown;
+        }
+
+        form {
+            width: 250px;
+            height: 300px;
+            border: 2px solid black;
+            border-radius: 25px;
+            background-image: url(./lo.jpg);
+            color: yellow;
+        }
+
+        .validation-message {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>LOGIN</h1><br>
+        <form onsubmit="return validateForm()"><br><br>
+            <label for="user">USERNAME:</label>
+            <input type="text" id="user" required><br>
+            <div class="validation-message" id="userValidationMessage"></div>
+
+            <label for="pass">PASSWORD:</label>
+            <input type="password" id="pass" required><br>
+            <div class="validation-message" id="passValidationMessage"></div>
+
+            <label for="mail">Enter Your Mail id:</label>
+            <input type="email" id="mail" required><br>
+            <div class="validation-message" id="mailValidationMessage"></div>
+
+            <input type="submit" value="submit" style="background-color: orange;">
+        </form>
+    </center>
+
+    <script>
+        function validateForm() {
+            return (
+                usernameValidation() &&
+                passwordValidation() &&
+                mailValidation()
+            );
+        }
+
+        function usernameValidation() {
+            let a = document.getElementById('user').value;
+            let messageElement = document.getElementById('userValidationMessage');
+
+            if (a.length < 6 || a.length > 10) {
+                messageElement.textContent = "Username length should be between 6 and 10 characters";
+                return false;
+            } else {
+                messageElement.textContent = "";
+                return true;
+            }
+        }
+
+        function passwordValidation() {
+            let b = document.getElementById('pass').value;
+            let messageElement = document.getElementById('passValidationMessage');
+
+            if (b.length < 8) {
+                messageElement.textContent = "Password length should be at least 8 characters";
+                return false;
+            } else {
+                messageElement.textContent = "";
+                return true;
+            }
+        }
+
+        function mailValidation() {
+            let c = document.getElementById('mail').value;
+            let messageElement = document.getElementById('mailValidationMessage');
+            let emailRegex = /@gmail\.com$/;
+
+            if (emailRegex.test(c)) {
+                messageElement.textContent = "Email is valid!";
+                return true;
+            } else {
+                messageElement.textContent = "Email is not valid. It should end with @gmail.com";
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

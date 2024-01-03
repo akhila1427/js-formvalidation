@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+  let a="https://jsonplaceholder.typicode.com/comments"
+
+fetch(a)
+            .then(res=>res.json())
+            .then((satisfy) => showData(satisfy))
+        .catch((error) => displayError(error))
+
+            function showData(satisfy){
+                console.log(satisfy);
+
+            satisfy.map((value)=>{
+                var b=document.createElement("div")
+                b.innerHTML=value.email
+                document.body.appendChild(b)
+
+            })
+        
+            }
+        function displayError(error) {
+        console.log(error);
+      }
+
+    </script>
+</body>
+</html>
